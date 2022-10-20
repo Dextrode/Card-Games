@@ -1,0 +1,193 @@
+body {
+    margin: 0;
+    background-color: #035000;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+
+@font-face {
+    font-family: cardFont;
+    src: url(CARDC___.ttf);
+}
+
+
+.board {
+    background-color: #035000;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-row {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 3rem;
+}
+
+.stock {
+    margin-right: 1rem;
+}
+
+
+.card-slot {
+    width: 6rem;
+    height: 10rem;
+    outline: 3px solid white;
+    margin-right: 1rem;
+}
+
+.empty {
+    outline: 0px solid white;
+}
+
+
+.text {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.card {
+    outline: 3.5px solid white;
+    position: relative;
+    width: 6rem;
+    height: 10rem;
+    border-radius: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: white;
+    font-family: cardFont;
+    animation: flip-card .5s 1 forwards;
+}
+
+.top-cards .card {
+    position: absolute;
+}
+
+.card:not(:first-child) {
+    position: absolute;
+}
+
+.tableaus .card:nth-child(2) {
+    top: 330px;
+}
+
+.tableaus .card:nth-child(3) {
+    top: 390px;
+}
+
+.tableaus .card:nth-child(4) {
+    top: 450px;
+}
+
+.tableaus .card:nth-child(5) {
+    top: 510px;
+}
+
+.tableaus .card:nth-child(6) {
+    top: 570px;
+}
+
+.tableaus .card:nth-child(7) {
+    top: 630px;
+}
+
+.tableaus .card:nth-child(8) {
+    top: 690px;
+}
+
+.tableaus .card:nth-child(9) {
+    top: 750px;
+}
+
+.tableaus .card:nth-child(10) {
+    top: 810px;
+}
+
+.tableaus .card:nth-child(11) {
+    top: 870px;
+}
+
+.stock {
+    background: linear-gradient(135deg, #ec283155 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(225deg, #ec2831 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(315deg, #ec283155 25%, transparent 25%) 0px 0/ 12px 12px, linear-gradient(45deg, #ec2831 25%, #ffffff 25%) 0px 0/ 12px 12px;
+}
+
+
+.tableaus .card:not(:last-child) {
+    content: "";
+    background: linear-gradient(135deg, #ec283155 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(225deg, #ec2831 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(315deg, #ec283155 25%, transparent 25%) 0px 0/ 12px 12px, linear-gradient(45deg, #ec2831 25%, #ffffff 25%) 0px 0/ 12px 12px;
+}
+
+.card:nth-last-child(1)::before {
+    top: .2rem;
+    right: .2rem;
+}
+
+.card:nth-last-child(1)::after {
+    bottom: .2rem;
+    left: .2rem;
+}
+
+.card__front {
+    border-radius: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: white;
+}
+
+.card.red {
+    color: #ec2831;
+    border: 2px solid #ec2831;
+}
+
+.card.black {
+    color: black;
+    border: 2px solid black;
+}
+
+.card:nth-last-child(1)::before,
+.card:nth-last-child(1)::after {
+    position: absolute;
+    content: attr(data-value);
+    font-size: 1rem;
+}
+
+
+.btn {
+    width: 100px;
+    height: 50px;
+}
+
+
+
+@keyframes flip-card {
+    0% { 
+        transform: rotateY(180deg) translateX(79px) scale(1); 
+    }
+    20% { 
+        
+    }
+    40% { 
+
+    }
+    60% { 
+        
+    }
+    80% { 
+
+    }
+    100% { 
+
+        transform: rotateY(0deg) translateX(0px) scale(1); 
+
+    }
+}
