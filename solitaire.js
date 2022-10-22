@@ -15,6 +15,8 @@ const VALUES = [
     "K",
 ];
 
+var isFront
+
 // Deck class for all cards
 // Encapsulates anything that deals with a pile of cards
 export default class Deck {
@@ -62,14 +64,16 @@ export class Card {
         this.suit = suit;
         this.value = value;
     }
+    
 
     get color() {
         // If it is those suits set to black, if not set to red
         return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
     }
-
+    
 
     getHTML() {
+        
         // Creates card div
         const card = document.createElement("div");
 
@@ -80,19 +84,20 @@ export class Card {
         card.classList.add("card", this.color);
         card.classList.add(this.value + this.suit);
 
+        if (card.isFront = true) {
+            card.classList.add("front");
+        } else {
+            card.classList.add("back");
+        }
+        
+
         // set the data-value to value and suit
         card.dataset.value = `${this.value}${this.suit}`;
         card.dataset.value = `${this.value}${this.suit}`;
 
-        
         return card;
     }
-    
-    
-
 }
-
-
 
 function freshDeck() {
     //flatMap condensenses the array to all 52 cards
@@ -140,7 +145,6 @@ let tableauDeckArray = [];
 
 // Start the game
 function startGame() {
-
     // Creating a brand new deck
     const deck = new Deck();
 
@@ -154,31 +158,34 @@ function startGame() {
         deck.cards.slice(solitaireMidpoint, deck.numberOfCards),
     );
 
-
-    let i = 0
+    let i = 0;
 
     while (i <= 6) {
-
         var tableauCardSlot = document.createElement("div");
-        tableauCardSlot.classList.add("tableau", "card-slot", "slot"+[i + 1]);
+        tableauCardSlot.classList.add("tableau", "card-slot", "slot" + [i + 1]);
         tableauCardSlots.appendChild(tableauCardSlot);
 
-        i++
+        i++;
 
         for (let j = 0; j < i; j++) {
+            if (j === i) { 
 
-            if (j === i) {
-                lastCardFlip(); 
+                
+
+                return isFront
+
             }
-            console.log(tableauDeck.cards.length);
-            tableauCardSlot.appendChild(tableauDeck.cards[j].getHTML());
 
+            console.log(isFront);
+            
+            tableauCardSlot.appendChild(tableauDeck.cards[j].getHTML());
+            
             
         }
+        
     }
-
-
 }
+
 
 stockDeckBase.addEventListener("click", () => {
     flipCards();
@@ -187,6 +194,7 @@ stockDeckBase.addEventListener("click", () => {
 function flipCards() {
     const stockCard = stockDeck.pop();
     stockDeckElement.appendChild(stockCard.getHTML());
+    
 }
 
 startGame();
