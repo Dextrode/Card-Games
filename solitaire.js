@@ -68,6 +68,7 @@ export class Card {
         return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
     }
 
+
     getHTML() {
         // Creates card div
         const card = document.createElement("div");
@@ -77,12 +78,21 @@ export class Card {
 
         // add card and the color to div's class
         card.classList.add("card", this.color);
+        card.classList.add(this.value + this.suit);
 
         // set the data-value to value and suit
         card.dataset.value = `${this.value}${this.suit}`;
+        card.dataset.value = `${this.value}${this.suit}`;
+
+        
         return card;
     }
+    
+    
+
 }
+
+
 
 function freshDeck() {
     //flatMap condensenses the array to all 52 cards
@@ -128,9 +138,13 @@ let tableauDeck, stockDeck;
 let stockDeckArray = [];
 let tableauDeckArray = [];
 
-
+// Start the game
 function startGame() {
+
+    // Creating a brand new deck
     const deck = new Deck();
+
+    // Shuffeling cards in deck
     deck.shuffle();
 
     const solitaireMidpoint = Math.ceil(deck.numberOfCards - 24);
@@ -140,16 +154,30 @@ function startGame() {
         deck.cards.slice(solitaireMidpoint, deck.numberOfCards),
     );
 
-    for (let i = 0; i < 7; i++) {
+
+    let i = 0
+
+    while (i <= 6) {
+
         var tableauCardSlot = document.createElement("div");
-        tableauCardSlot.classList.add("tableau", "card-slot");
+        tableauCardSlot.classList.add("tableau", "card-slot", "slot"+[i + 1]);
         tableauCardSlots.appendChild(tableauCardSlot);
+
+        i++
+
+        for (let j = 0; j < i; j++) {
+
+            if (j === i) {
+                lastCardFlip(); 
+            }
+            console.log(tableauDeck.cards.length);
+            tableauCardSlot.appendChild(tableauDeck.cards[j].getHTML());
+
+            
+        }
     }
 
-    for (let i = 0; i < tableauDeck.cards.length; i++) {
-        console.log(tableauDeck.cards.length);
-        tableauCardSlot.appendChild(tableauDeck.cards[i].getHTML());
-    }
+
 }
 
 stockDeckBase.addEventListener("click", () => {
