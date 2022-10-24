@@ -15,7 +15,6 @@ const VALUES = [
     "K",
 ];
 
-var isFront
 
 // Deck class for all cards
 // Encapsulates anything that deals with a pile of cards
@@ -70,33 +69,39 @@ export class Card {
         // If it is those suits set to black, if not set to red
         return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
     }
-    
+
 
     getHTML() {
+        
+        
         
         // Creates card div
         const card = document.createElement("div");
 
+        
         //Sets inner html to the suit
         card.innerHTML = this.suit;
+
 
         // add card and the color to div's class
         card.classList.add("card", this.color);
         card.classList.add(this.value + this.suit);
 
-        if (card.isFront = true) {
-            card.classList.add("front");
-        } else {
-            card.classList.add("back");
-        }
+
+
         
+        card.classList.add("back");
 
         // set the data-value to value and suit
         card.dataset.value = `${this.value}${this.suit}`;
-        card.dataset.value = `${this.value}${this.suit}`;
-
-        return card;
+        
+        
+        return card;   
     }
+
+    
+
+    
 }
 
 function freshDeck() {
@@ -133,15 +138,12 @@ const stockDeckElement = document.querySelector(".stock-deck");
 const stockDeckBase = document.querySelector(".stock");
 
 const tableauDeckElement = document.querySelector(".tableau-deck");
-// const tableauCardSlot = document.querySelector(".tableau");
 const tableauCardSlots = document.querySelector(".tableaus");
 
 const foundationSlot = document.querySelector(".foundation");
 const wastePile = document.querySelector(".waste-pile");
 
 let tableauDeck, stockDeck;
-let stockDeckArray = [];
-let tableauDeckArray = [];
 
 // Start the game
 function startGame() {
@@ -166,19 +168,16 @@ function startGame() {
         tableauCardSlots.appendChild(tableauCardSlot);
 
         i++;
-
+        
         for (let j = 0; j < i; j++) {
+            tableauCardSlot.appendChild(tableauDeck.cards[j].getHTML());
+
             if (j === i) { 
-
-                
-
-                return isFront
-
+                // card.classList.add("card" + i);
             }
 
-            console.log(isFront);
             
-            tableauCardSlot.appendChild(tableauDeck.cards[j].getHTML());
+            console.log();
             
             
         }
