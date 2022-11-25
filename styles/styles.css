@@ -6,10 +6,7 @@ body {
 }
 
 
-@font-face {
-    font-family: cardFont;
-    src: url(CARDC___.ttf);
-}
+
 
 
 .board {
@@ -23,11 +20,19 @@ body {
     justify-content: center;
     align-content: center;
     margin-top: 3rem;
+    position: relative;
 }
 
-.stock {
-    margin-right: 1rem;
+.stocks {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
+#stock-slot-0 .card {
+    margin-right: 1rem;
+    animation: flip-card .5s 1 forwards;
+}
+
 
 
 .card-slot {
@@ -35,10 +40,14 @@ body {
     height: 10rem;
     outline: 3px solid white;
     margin-right: 1rem;
+    position: relative;
 }
 
 .empty {
     outline: 0px solid white;
+    width: 6rem;
+    height: 10rem;
+    margin-right: 1rem;
 }
 
 
@@ -52,6 +61,15 @@ body {
     font-size: 1.5rem;
 }
 
+.draggable {
+    cursor: move;
+}
+
+.draggable.dragging {
+    width: 6rem;
+    height: 10rem
+}
+
 .card {
     outline: 3.5px solid white;
     position: relative;
@@ -63,8 +81,6 @@ body {
     align-items: center;
     font-size: 2rem;
     background-color: white;
-    font-family: cardFont;
-    animation: flip-card .5s 1 forwards;
 }
 
 .top-cards .card {
@@ -75,56 +91,49 @@ body {
     position: absolute;
 }
 
-.tableaus .card:nth-child(2) {
-    top: 330px;
+.tableaus .card-slot .card:nth-child(1) {
+    top: 0px;
+}
+.tableaus .card-slot .card:nth-child(2) {
+    top: 60px;
 }
 
-.tableaus .card:nth-child(3) {
-    top: 390px;
+.tableaus .card-slot .card:nth-child(3) {
+    top: 120px;
 }
 
-.tableaus .card:nth-child(4) {
-    top: 450px;
+.tableaus .card-slot .card:nth-child(4) {
+    top: 180px;
 }
 
-.tableaus .card:nth-child(5) {
-    top: 510px;
+.tableaus .card-slot .card:nth-child(5) {
+    top: 240px;
 }
 
-.tableaus .card:nth-child(6) {
-    top: 570px;
+.tableaus .card-slot .card:nth-child(6) {
+    top: 300px;
 }
 
-.tableaus .card:nth-child(7) {
-    top: 630px;
+.tableaus .card-slot .card:nth-child(7) {
+    top: 360px;
 }
 
-.tableaus .card:nth-child(8) {
-    top: 690px;
+.tableaus .card-slot .card:nth-child(8) {
+    top: 420px;
 }
 
-.tableaus .card:nth-child(9) {
-    top: 750px;
+.tableaus .card-slot .card:nth-child(9) {
+    top: 480px;
 }
 
-.tableaus .card:nth-child(10) {
-    top: 810px;
+.tableaus .card-slot .card:nth-child(10) {
+    top: 540px;
 }
 
-.tableaus .card:nth-child(11) {
-    top: 870px;
+.tableaus .card-slot .card:nth-child(11) {
+    top: 600px;
 }
 
-.stock {
-    background: linear-gradient(135deg, #ec283155 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(225deg, #ec2831 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(315deg, #ec283155 25%, transparent 25%) 0px 0/ 12px 12px, linear-gradient(45deg, #ec2831 25%, #ffffff 25%) 0px 0/ 12px 12px;
-}
-
-
-.tableaus .card:not(:last-child) {
-    content: "";
-    border: 2px solid #ec2831;
-    background: linear-gradient(135deg, #ec283155 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(225deg, #ec2831 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(315deg, #ec283155 25%, transparent 25%) 0px 0/ 12px 12px, linear-gradient(45deg, #ec2831 25%, #ffffff 25%) 0px 0/ 12px 12px;
-}
 
 .card:nth-last-child(1)::before {
     top: .2rem;
@@ -154,12 +163,22 @@ body {
     color: black;
     border: 2px solid black;
 }
+.face-front {
+    content: attr(data-value);
+}
 
-.card:nth-last-child(1)::before,
-.card:nth-last-child(1)::after {
+.face-front::before,
+.face-front::after {
     position: absolute;
     content: attr(data-value);
     font-size: 1rem;
+}
+
+.face-back {
+    background: linear-gradient(135deg, #ec283155 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(225deg, #ec2831 25%, transparent 25%) -6px 0/ 12px 12px, linear-gradient(315deg, #ec283155 25%, transparent 25%) 0px 0/ 12px 12px, linear-gradient(45deg, #ec2831 25%, #ffffff 25%) 0px 0/ 12px 12px;
+    font-size: 0px;
+    content: none;
+    
 }
 
 
