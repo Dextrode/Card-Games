@@ -64,6 +64,7 @@ export default class Deck {
     }
 }
 
+
 let draggable = false;
 let dragClass = "not-draggable";
 let cardId;
